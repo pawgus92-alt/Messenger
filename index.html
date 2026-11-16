@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Кромка — нить, а не лента</title>
+    <meta
+      name="description"
+      content="Кромка — мессенджер, в котором разговор натянут как верёвка во времени. Свои узлы снизу, чужие сверху, важное приколото к кромке."
+    />
+    <meta name="theme-color" content="#121614" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,520;0,7..72,680;1,7..72,520&family=Manrope:wght@400;500;600;700&family=Unbounded:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip" href="#stage">К нити</a>
+    <div class="lamp" aria-hidden="true"></div>
+
+    <header class="rail">
+      <a class="brand" href="./">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M3 12 Q16 26 29 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          <circle cx="16" cy="19" r="2.4" fill="#e08a5d" stroke="none" />
+        </svg>
+        <span>
+          <strong>Кромка</strong>
+          <small>нить, а не лента</small>
+        </span>
+      </a>
+      <div class="wire" id="wire" role="tablist" aria-label="Нити"></div>
+      <div class="me-wrap">
+        <button class="me" id="me-btn" type="button" aria-haspopup="dialog" aria-expanded="false">
+          <i class="orb orb-me" aria-hidden="true"></i>
+          <span id="me-name">Сесть</span>
+        </button>
+        <div class="seat-panel" id="seat-panel" hidden>
+          <p>Сесть в этой вкладке как</p>
+          <div id="seat-list"></div>
+          <form id="seat-form">
+            <label>
+              Новое имя
+              <input name="name" maxlength="24" autocomplete="nickname" />
+            </label>
+            <button class="tie" type="submit">Сесть</button>
+            <p class="panel-error" id="seat-error" role="alert"></p>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <div class="room">
+      <aside class="ledge" id="ledge">
+        <header class="ledge-head">
+          <p class="kicker">кромка</p>
+          <h2>Приколотое</h2>
+        </header>
+        <div id="pins"></div>
+      </aside>
+
+      <div class="stage-wrap">
+        <p class="thread-title" id="thread-title"></p>
+        <main class="stage" id="stage" tabindex="0" aria-label="Нить разговора. Время идёт вправо.">
+        <div class="track" id="track">
+          <svg class="string" id="string" aria-hidden="true"></svg>
+          <div id="knots"></div>
+          <form class="composer" id="composer" hidden>
+            <p class="replying" id="replying" hidden>
+              <span id="replying-text"></span>
+              <button type="button" id="reply-clear" aria-label="Снять привязку">×</button>
+            </p>
+            <label class="sr" for="draft">Новый узел</label>
+            <textarea id="draft" rows="3" maxlength="500" placeholder="Потяни нить…"></textarea>
+            <div class="composer-row">
+              <p class="hum" id="hum" aria-live="polite"></p>
+              <button class="tie" type="submit">Завязать</button>
+            </div>
+            <p class="composer-error" id="composer-error" role="alert"></p>
+          </form>
+        </div>
+      </main>
+      </div>
+    </div>
+
+    <footer class="map">
+      <span class="map-caption">прошлое</span>
+      <div class="map-line" id="map-line">
+        <div class="map-window" id="map-window"></div>
+        <div id="map-dots"></div>
+      </div>
+      <span class="map-caption">сейчас</span>
+      <p class="map-hint" id="map-hint"></p>
+    </footer>
+
+    <button class="ledge-toggle" id="ledge-toggle" type="button" aria-expanded="false">Кромка</button>
+    <button class="to-end" id="to-end" type="button" hidden>К концу нити</button>
+    <p class="sr" id="live" aria-live="polite"></p>
+
+    <dialog id="gate" aria-labelledby="gate-title">
+      <form class="gate-card" id="gate-form">
+        <p class="kicker">место у нити</p>
+        <h1 id="gate-title">Кромка</h1>
+        <p class="lede">
+          Разговор здесь — верёвка, натянутая во времени. Свои слова садятся снизу, чужие сверху.
+          Ленты чатов и облачков нет.
+        </p>
+        <label>
+          Как тебя зовут
+          <input name="name" required maxlength="24" autocomplete="nickname" placeholder="например, Ася" />
+        </label>
+        <p class="gate-error" id="gate-error" role="alert"></p>
+        <button class="tie" type="submit">Сесть за нить</button>
+        <div class="known" id="known" hidden>
+          <p>Уже садились за эту нить</p>
+          <div id="known-list"></div>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./main.js" type="module"></script>
+  </body>
+</html>
